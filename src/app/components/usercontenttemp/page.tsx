@@ -2,20 +2,26 @@ import React from 'react'
 import {sty1,sty2} from '../../style'
 import UserContentList from '../usercontentlist/page'
 import UserContent from '../usercontent/page'
+import ChatNav from '../chatNavbar/page'
 function UserContentTemp() {
-  return (
-    <div className={`w-full h-screen ${sty1} `}>
-      <aside className='min-w-28 h-full'>
-<UserContentList/>
 
-      </aside>
-<div className=' h-full'>
+    return (
+      <div className={`relative w-screen  h-screen flex flex-col justify-start dark:bg-gray-900 bg-white dark:text-white text-gray-900 overflow-hidden`}>
+            <div className=' absolute top-0 z-50 w-full'>
 
-<UserContent/>
-</div>
+            <ChatNav />
+            </div>
+            <div className='w-full  h-screen mt-7 flex flex-row '>
+            {/* h-[calc(100vh-48px)] lg:h-[calc(100vh-56px)] */}
+          <UserContentList/>
 
-    </div>
-  )
-}
+        <div className='fixed z-10 w-full h-[calc(100vh-30px)] lg:h-[calc(100vh-36px)]  flex flex-row justify-center pt-6'>
+          <UserContent />
+        </div>
+            </div>
 
-export default UserContentTemp
+      </div>
+    )
+  }
+
+  export default UserContentTemp

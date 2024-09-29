@@ -31,3 +31,9 @@ body {
     text-wrap: balance;
   }
 }
+.H-con{
+  height: calc(100vh - 160px);
+}
+.W-con{
+  width: calc(100vw - 112px);
+}
