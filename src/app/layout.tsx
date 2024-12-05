@@ -17,7 +17,7 @@ export default function RootLayout({
 }): React.ReactElement {
   return (
     <html lang="en" suppressHydrationWarning={true} className="dark">
-         <Head> <link rel="icon" href="/logo.svg"/></Head>
+         <Head> <link rel="icon" href="/favicon.ico"/></Head>
       <body className={inter.className}>
         <AppWrapper>
           {children}
