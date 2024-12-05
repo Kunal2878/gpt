@@ -22,23 +22,34 @@ Amplify.configure(
   },
   { ssr: true }
 );
-
+type c_msg ={
+  prmt: string;
+  content: any;
+}
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [id, setId] = useState<any|undefined>("");
   const [email, setEmail] = useState<string|undefined>("");
   const [userName, setUserName] = useState<string|undefined>("");
   const [title, setTitle] = useState<string>("");
-  const [avatar, setAvatar] = useState<string|undefined>("solid_user.svg");
+  const [avatar, setAvatar] = useState<string|undefined>("/user.svg");
   const [isSession, setIsSession] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isNotify, setIsNotify] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-   
+  const [isAvatarMenu, setIsAvatarMenu] = useState<boolean>(false);
+  const [files, setFiles] = useState<any>([]);
+  const [chatRooms, setChatRooms] = useState<any>([]);
+  const [showError, setShowError]= useState<string>('')
+  const [content, setContent] = useState<any>([])
+  const [newContent, setNewContent] = useState<any>([])
+  const [chatRoomData, setChatRoomData]= useState<any>([])
 
   const [isThemeMenu, setIsThemeMenu] = useState<boolean>(false);
   const [isInvite, setIsInvite] = useState<boolean>(false);
   const [chatTheme, setChatTheme] = useState<string>('/Design.png');
+  const [currRid,setCurrRid]=useState<string | undefined>('')
+  const [currIndex,setCurrIndex]=useState<number>(0)
 
 
 
@@ -61,7 +72,15 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           isThemeMenu,
           chatTheme,
           isMenuOpen,
-
+          isAvatarMenu,
+          files,
+          showError,
+          chatRooms,
+          content,
+          newContent,
+          chatRoomData,
+          currRid,
+          currIndex,
 
           setId,
           setEmail,
@@ -75,7 +94,16 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           setIsThemeMenu,
           setChatTheme,
           setIsInvite,
-          setIsMenuOpen
+          setIsMenuOpen,
+          setIsAvatarMenu,
+          setFiles,
+          setShowError,
+          setChatRooms,
+          setContent,
+          setNewContent,
+          setChatRoomData,
+          setCurrRid,
+          setCurrIndex
 
         }}
       >
@@ -86,8 +114,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
 
     </ThemeProvider>
   );
-}
 
+}
 
 
     

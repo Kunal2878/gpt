@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.2.17",
+    "@aws-sdk/client-dynamodb": "^3.658.1",
     "@aws-sdk/client-s3": "^3.651.1",
+    "@aws-sdk/lib-dynamodb": "^3.658.1",
     "@google/generative-ai": "^0.17.0",
     "aws-amplify": "^6.6.0",
     "next": "^14.2.6",

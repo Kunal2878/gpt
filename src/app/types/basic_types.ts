@@ -20,6 +20,10 @@ export interface Message2 {
   export interface Namespace{
     chat_message:string
   }
+  type c_msg ={
+    prmt: string;
+    content: any;
+  }
   export interface AppContextProps {
     userName: string | undefined;
     email: string|undefined;
@@ -30,6 +34,15 @@ export interface Message2 {
     isLoading:boolean;
     isNotify:boolean;
     isLogin:boolean;
+    isAvatarMenu:boolean;
+    files:any;
+    showError:string;
+    chatRooms:any;
+    content:any;
+    newContent:any;
+    chatRoomData:any;
+    currRid:string|undefined;
+    currIndex:any;
 
 
     isThemeMenu:boolean;
@@ -49,7 +62,15 @@ export interface Message2 {
     setIsMenuOpen: (isMenuOpen: boolean) => void;
     setIsInvite: (isInvite: boolean) => void;
     setChatTheme: (chatTheme: string) => void;
-
+    setIsAvatarMenu: (isAvatarMenu: boolean) => void;
+    setFiles:(files:any)=> void
+    setShowError:(showError:string)=> void
+    setChatRooms:(chatRooms:any)=> void
+    setContent:(content:any)=> void
+    setNewContent:(newContent:any) => void
+    setChatRoomData:(chatRoomData:any)=> void
+    setCurrRid:(currRid:string|undefined)=> void
+    setCurrIndex:(currIndex:any)=> void
     
   }
  
