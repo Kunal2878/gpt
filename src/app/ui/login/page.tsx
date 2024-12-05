@@ -37,7 +37,7 @@ const [errorMessage, dispatch] = useFormState(handleSignIn as any, undefined);
   
 
     return (
-      <div className="min-h-screen  bg-gradient-to-tl from-purple-700 via-indigo-600 to-pink-400   lg:bg-gradient-to-r lg:from-purple-200 lg:to-indigo-600 flex flex-col lg:flex-row items-center justify-center lg:p-4">
+      <div className="min-h-screen  bg-gradient-to-tl from-purple-700 via-indigo-600 to-pink-400 lg:bg-gradient-to-r lg:from-purple-200 lg:to-indigo-600 flex flex-col lg:flex-row items-center justify-center lg:p-4">
           <div className="w-full lg:w-1/3 hidden lg:block relative h-[450px] bg-gradient-to-tl from-purple-700 via-indigo-600 to-pink-400 rounded-l-lg">
         
           <div className="flex justify-between items-center p-8">
@@ -54,7 +54,7 @@ const [errorMessage, dispatch] = useFormState(handleSignIn as any, undefined);
           </div>
         <div className=" bg-black relative shadow-xl rounded-t-2xl  lg:rounded-t-none l g:rounded-r-lg overflow-hidden w-full lg:w-1/3 lg:h-[450px] h-screen z-50 mt-32 lg:mt-0">
         <div className=" lg:hidden absolute bottom-0 flex justify-between items-center p-4 w-full ">
-            <h2 className="p-2 text-white text-3xl font-bold flex flex-row flex-wrap w-full justify-center items-center ">"Welcome to the era of limitless conversations..."</h2>
+            <h2 className="p-2 text-white text-3xl font-bold flex flex-row flex-wrap w-full justify-center items-center">Welcome to the era of limitless conversations</h2>
           </div>
           <div className="p-4 ">
             <h3 className="text-white text-xl font-semibold mb-6">

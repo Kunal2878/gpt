@@ -51,7 +51,7 @@ export default function SignUp() {
           <h2 className="text-white text-2xl font-bold">TalkToGPT</h2>
         </div>
         <div className="mb-6 absolute bottom-0 flex justify-between items-center p-4">
-          <h2 className="text-white text-xl font-bold flex flex-row w-full justify-center items-center flex-nowrap">Welcome to the era of limitless conversations...</h2>
+          <h2 className="text-white text-xl font-bold flex flex-row w-full justify-center items-center flex-nowrap">Welcome to the era of limitless conversations</h2>
         </div>
 
         </div>
@@ -61,7 +61,7 @@ export default function SignUp() {
       <div className=" relative bg-black shadow-xl rounded-t-2xl  lg:rounded-t-none l g:rounded-r-lg overflow-hidden w-full lg:w-1/3 lg:h-[450px] h-screen z-50 mt-32 lg:mt-0">
     
       <div className=" lg:hidden absolute bottom-0 flex justify-between items-center p-4 w-full ">
-          <h2 className="p-2 text-white text-3xl font-bold flex flex-row flex-wrap w-full justify-center items-center ">"Welcome to the era of limitless conversations..."</h2>
+          <h2 className="p-2 text-white text-3xl font-bold flex flex-row flex-wrap w-full justify-center items-center ">Welcome to the era of limitless conversations</h2>
         </div>
 
 
