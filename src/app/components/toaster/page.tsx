@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
 
-type ToasterProps= {
-  message: string;
-  color: string;
-}
+// type ToasterProps= {
+//   message: string;
+//   color: string;
+// }
 
-const Toaster: React.FC<ToasterProps> = ({ message, color }) => {
+const Toaster = ({ message, color }:{message:any,color:any}) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   React.useEffect(() => {
