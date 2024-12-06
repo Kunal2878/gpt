@@ -6,7 +6,7 @@ import React from 'react';
 //   color: string;
 // }
 
-const Toaster = ({ message, color }:{message:any,color:any}) => {
+const Toaster = ( message:any, color:any ) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   React.useEffect(() => {
