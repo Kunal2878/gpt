@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 
-interface ToasterProps {
+type ToasterProps= {
   message: string;
   color: string;
 }
