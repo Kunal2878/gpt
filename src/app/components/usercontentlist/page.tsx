@@ -23,8 +23,6 @@ const ddbClient= new DynamoDBClient(config)
   const context = UseAppContext();
   const { email,isMenuOpen,chatRooms,setContent,content,chatRoomData,isLogin,setChatRooms,setCurrRid,currIndex,setChatRoomData,setCurrIndex,currRid,setNewContent,newContent } = context || {};
 
-
-  const dim = window.innerWidth
   
   const [inSize, setInsize] = React.useState<number>(44)
 
