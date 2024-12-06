@@ -56,10 +56,9 @@ const getImageUrlFromS3 = async () => {
     const data = await s3Client.send(command);
     return `https://${process.env.NEXT_PUBLIC_BUCKET}.s3.${process.env.NEXT_PUBLIC_REGION}.amazonaws.com/${userName}_avatar`;
   } catch (error) {
-    console.error(`Error fetching image ${userName}.jpeg from S3:`, error);
+    window.console.log("There is a problem on fetching the response, try after sometime");
   }
 
-  console.error('No image found for the user');
   return null;
 };  
   const uploadToS3 = async (file: File) => {
@@ -87,13 +86,12 @@ const getImageUrlFromS3 = async () => {
       const imageUrl = `https://${process.env.NEXT_PUBLIC_BUCKET}.s3.${process.env.NEXT_PUBLIC_REGION}.amazonaws.com/${fileName}`;
       setAvatar?.(imageUrl);
     } catch (error) {
-      console.error('Error uploading file:', error);
+
     }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    console.log(file)
     if (file) {
       uploadToS3(file);
     }
