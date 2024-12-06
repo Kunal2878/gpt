@@ -40,11 +40,11 @@ export  async function FileContent(prmt:any,files:any)
         // Generate content using the model
         const generatedContent = await model.generateContent(modelInput);
         
-        console.log(generatedContent.response.text());
+
         
         return {text:generatedContent.response.text(), status:200}
       } catch (error) {
-        console.error("Error generating content:", error);
+        window.console.log("There is a problem on generating the response, try after sometime")
         return {text:error,status:423};
       }
     }
@@ -68,7 +68,7 @@ export  async function FileContent(prmt:any,files:any)
     
 const genContent= await run();
 
- console.log(genContent)
+
    return genContent
 }
 

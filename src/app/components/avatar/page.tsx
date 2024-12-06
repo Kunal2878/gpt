@@ -15,7 +15,7 @@ const s3Client = new S3Client({
     },
   });
 
-export async function fetchExistingImage(username: string): Promise<string[] | null> {
+export async function FetchExistingImage(username: string): Promise<string[] | null> {
   const params = {
       Bucket: process.env.NEXT_PUBLIC_BUCKET, // Replace with your S3 bucket name
       Prefix: `${username}/`, // Prefix the search with the username

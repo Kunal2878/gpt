@@ -34,13 +34,13 @@ export default async function Content(prmt:any,rmid:any,isLogin:any,email:any,fu
           await insertData(text, id);
           return text;
         } catch (error) {
-          console.error("Error generating content:", error);
+          window.console.log("There is a problem, try after sometime")
           throw error;
         }
       }
      
       const  insertData = async (txt: string, id:string) =>{
-  console.log("Data inserting in room")
+
         const params = {
           TableName: tab_name,
           Item: {
@@ -55,9 +55,10 @@ export default async function Content(prmt:any,rmid:any,isLogin:any,email:any,fu
   
         try {
            await ddbClient.send(new PutItemCommand(params))
-          console.log("Data inserted successfully",);
+    
         } catch (error) {
-          console.log("Error inserting data:", error);
+          window.console.log("There is a problem on saving your data, try after sometime")
+
         }
       }
 
@@ -69,7 +70,7 @@ export default async function Content(prmt:any,rmid:any,isLogin:any,email:any,fu
 else if(fun_name === "insert room")
 
     {
-      console.log("inserting in room")
+     
         const insertRoomid = async (id:string) =>
           {
             const params = {
@@ -83,12 +84,12 @@ else if(fun_name === "insert room")
 
             try
             {
-              console.log("Insert the room")
+     
               await ddbClient.send(new PutItemCommand(params))
-              console.log("Data inserted successfully");
+              
             }
           catch (error) {
-              console.log("Error inserting data:", error);
+            window.console.log("There is a problem, try after sometime")
             }
 
 
@@ -116,7 +117,7 @@ else if(fun_name === "insert room")
              const result = await ddbClient.send(new QueryCommand(params));
              return result.Items?.map(item => item.rmid.S) || [];
            } catch (error) {
-             console.log("Error retrieving room IDs:", error);
+            window.console.log("There is a problem, try after sometime")
              return [];
            }
          };
