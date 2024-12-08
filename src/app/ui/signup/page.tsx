@@ -132,11 +132,11 @@ export default function SignUp() {
                 Sign In.
               </Link>
             </p>
-            <div className="flex justify-center mt-6">
+            {/* <div className="flex justify-center mt-6">
               <button className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
                 Sign Up with Google
               </button>
-            </div>
+            </div> */}
             <div className="flex h-8 items-end space-x-1">
           <div
             className="flex h-8 items-end space-x-1"

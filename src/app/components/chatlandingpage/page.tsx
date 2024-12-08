@@ -23,13 +23,13 @@ import Image from 'next/image';
         ];  
       return (
         <main className="w-full  h-full flex flex-col items-center justify-start lg:justify-center p-24">
-          <div className="size-12 mb-12 p-1 shadow-lg shadow-gray-800 rounded-lg">
+          <div className="size-12 mb-7 p-1 shadow-lg shadow-gray-400 rounded-lg">
             <Image
               src="/logo.svg"
               alt="Main Image"
               width={500}
               height={300}
-              className="size-10  "
+              className="size-10"
             />
           </div>
       

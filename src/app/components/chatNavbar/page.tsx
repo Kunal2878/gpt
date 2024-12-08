@@ -10,7 +10,7 @@ function ChatNav() {
   const { isMenuOpen,setIsMenuOpen, isLogin,avatar,setIsAvatarMenu, isAvatarMenu} = context || {};
 
   return (
-    <div className='w-full h-12 lg:h-14 flex flex-row justify-between items-center p-1 pl-4 pr-4'>
+    <div className='w-full h-12 lg:h-14 flex flex-row justify-between items-center p-1 pl-4 pr-4 bg-black/50'>
       <div className={`${sty1} rounded-full size-8 hover:bg-gray-500 cursor-pointer `}>
       <Image
       width={10}

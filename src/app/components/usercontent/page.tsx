@@ -112,13 +112,6 @@ setCurrIndex?.(chatRooms.length)
    
   }
 
-React.useEffect(()=>{
-  console.log(chatRoomData)
-  console.log(content)
-
-  console.log("From user content rooms",chatRooms)
-
-},[chatRoomData,chatRooms])
 
   return (
     <div className={`w-full h-full ${sty2} `}>
@@ -243,7 +236,7 @@ value={filePrompt}
 
 }
 
-      <div className={`bottom-0 w-full md:h-20 flex flex-row justify-center items-center p-2 rounded-md mb-12`}>
+      <div className={`bottom-0  w-full h-20 flex flex-row justify-center items-center p-2 rounded-md mb-12`}>
         <div className={`w-full ${sty1}`}>
           <div className={`size-10 rounded-full flex flex-row justify-center items-center bg-gradient-to-r from-fuchsia-500 via-violet-600 to-emerald-500 p-1 mr-4`}>
             <Image
