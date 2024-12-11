@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {fetchUserAttributes,getCurrentUser,signOut } from "aws-amplify/auth";
 import  {UseAppContext}  from '../../index'
+import Menu from '../mob_top_bar/page'
 function Nav ({isCookie}:{isCookie:boolean}){
   const context = UseAppContext();
   const {isLogin, setIsLogin, setUserName} = context || {};
@@ -120,7 +121,7 @@ const items=[
   
   {/* For mobile devices */}
   
-  <div className={`size-12 md:hidden flex  ${sty1}` } onClick={()=>{isMenu?setIsMenu(false):setIsMenu(true)}}>
+  {/* <div className={`size-12 md:hidden flex  ${sty1}` } onClick={()=>{isMenu?setIsMenu(false):setIsMenu(true)}}>
 <Image
 src={'/menu.svg'}
 width={10}
@@ -130,33 +131,39 @@ className="size-10"
 
 />
 
-  </div>
+  </div> */}
   
 
-{
-  isMenu && (
-    <div className={`${sty2} w-40 p-2 rounded-md absolute top-0 right-0 mr-4 mt-2 dark:bg-white bg-gray-900 dark:text-gray-900 text-white`} >
+<div className="md:hidden w-full flex  flex-row ">
 
-<Link  href="/about" className={`${sty1} text-sm mb-2`}> About us
-</Link>
-<Link href="/" className={`${sty1} text-sm mb-4`}> Services
-</Link>
-
-<div className=" md:hidden rounded-full w-24 h-10 mb-4  p-1 bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-600"> 
-  { isLogin ?(
- <div  onClick={()=>signOutUser()}  className={`${sty1} rounded-full  bg-black text-sm w-24 h-10  p-1 text-white cursor-pointer`}> Logout</div>
-  ):(
-    <Link href="\ui\login" className={`${sty1} rounded-full  bg-black text-sm w-24 h-10  p-1 text-white`}> Login/Signup </Link>
-  )
-
- 
-  }
+<Menu/>
 
 </div>
+{
+
+//   isMenu && (
+//     <div className={`${sty2} w-40 p-2 rounded-md absolute top-0 right-0 mr-4 mt-2 dark:bg-white bg-gray-900 dark:text-gray-900 text-white`} >
+
+// <Link  href="/about" className={`${sty1} text-sm mb-2`}> About us
+// </Link>
+// <Link href="/" className={`${sty1} text-sm mb-4`}> Services
+// </Link>
+
+// <div className=" md:hidden rounded-full w-24 h-10 mb-4  p-1 bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-600"> 
+//   { isLogin ?(
+//  <div  onClick={()=>signOutUser()}  className={`${sty1} rounded-full  bg-black text-sm w-24 h-10  p-1 text-white cursor-pointer`}> Logout</div>
+//   ):(
+//     <Link href="\ui\login" className={`${sty1} rounded-full  bg-black text-sm w-24 h-10  p-1 text-white`}> Login/Signup </Link>
+//   )
+
+ 
+//   }
+
+// </div>
   
  
-    </div>
-  )
+//     </div>
+//   )
 }
   </nav>
 

@@ -114,8 +114,9 @@ setCurrIndex?.(chatRooms.length)
 
 
   return (
-    <div className={`w-full h-full ${sty2} `}>
-      <div className={`w-full static h-[calc(100vh-80px)] flex flex-col justify-center p-4`}>
+   
+   <div className={`w-full h-full ${sty2} `}>
+      <div className={`w-full static h-[calc(100vh-80px)]  flex flex-col justify-center p-4`}>
        {isShowPage&& content.length==0 ? (
         <div className={`w-full h-full flex flex-col justify-center items-center`}>
           <ChatLandingPage/>
@@ -236,7 +237,7 @@ value={filePrompt}
 
 }
 
-      <div className={`bottom-0  w-full h-20 flex flex-row justify-center items-center p-2 rounded-md mb-12`}>
+      <div className={` bottom-0 fixed w-full h-20   flex flex-row justify-center  pl-2 pr-2 rounded-md `}>
         <div className={`w-full ${sty1}`}>
           <div className={`size-10 rounded-full flex flex-row justify-center items-center bg-gradient-to-r from-fuchsia-500 via-violet-600 to-emerald-500 p-1 mr-4`}>
             <Image
