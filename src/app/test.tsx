@@ -51,10 +51,12 @@ export default  function Test()
         };
         // ChatRoomData();
         function check(){
-          setContent?.({prmt:"hfhh",des:"gggdhh"})
+          setContent?.([{prmt:"hfhh",des:"gggdhh"},{prmt:"qqqqqqqddkdhh",des:"gggdhhsjjd"}])
+          // setChatRoomData?.([])
           setChatRoomData?.([{prmt:"hfkdkkdhh",des:"gggdhhsjjd"},{prmt:"hfkdkjskakdhh",des:"gggdhnsnamhsjjd"}])
               setChatRoomData?.((prevData: any[]) => {
               const newData = [...prevData]
+              // console.log("from setChatRoom" ,[...prevData])
               newData[currIndex] = content
               return newData
             })

@@ -43,6 +43,7 @@ export interface Message2 {
     chatRoomData:any;
     currRid:string|undefined;
     currIndex:any;
+    quickPrompt:any;
 
 
     isThemeMenu:boolean;
@@ -71,6 +72,7 @@ export interface Message2 {
     setChatRoomData:(chatRoomData:any)=> void
     setCurrRid:(currRid:string|undefined)=> void
     setCurrIndex:(currIndex:any)=> void
+    setQuickPrompt:(quickPrompt:any)=> void
     
   }
  

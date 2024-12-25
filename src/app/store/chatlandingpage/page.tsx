@@ -3,9 +3,19 @@
 import React from 'react';
 import Image from 'next/image';
 import  {UseAppContext}  from '../../index'
+import { RootState } from '../state'
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+
+  setActivPrompt,
+
+
+ 
+} from '../slice'
   export default function ChatLandingPage() {
-    const context = UseAppContext();
-    const {setQuickPrompt} = context || {};
+
+    const dispatch = useDispatch();
+    const prompt = useSelector((state:RootState) => state.chat.prompt);
         const quickPrompts = [
           { text: "Explain the concept of quantum entanglement", src: "/p1.jpg", bg:"green-400" },
           { text: "Describe the process of photosynthesis in plants", src: "/p1.jpg",bg:"purple-300" },
@@ -44,13 +54,13 @@ import  {UseAppContext}  from '../../index'
             {quickPrompts
               .sort(() => 0.5 - Math.random())
               .slice(0, 3)
-              .map((prompt, index) => (
+              .map((itr:any, index:any) => (
                 <div
                   key={index}
-                  onClick={()=>setQuickPrompt?.(prompt.text)}
+                  onClick={()=>dispatch(setActivPrompt(itr.text))}
                   className=" cursor-pointer shadow-gray-600 shadow-md rounded-md bg-white/30 text-white w-32 lg:w-48 h-32 lg:h-36 flex flex-col items-center justify-center text-center text-[12px]"
                 >
-                  <span className="w-full h-2/5 line-clamp-2 text-[10px] lg:text-md">{prompt.text}</span>
+                  <span className="w-full h-2/5 line-clamp-2 text-[10px] lg:text-md">{itr.text}</span>
                   <div className={`bg-gradient-to-tr from-green-400 via-green-300 to-cyan-400 rounded w-full h-16 backdrop-blur-xl opacity-60`} 
 
 

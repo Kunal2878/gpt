@@ -3,12 +3,21 @@
 import React from 'react'
 import Image from 'next/image'
 import { sty1 } from '@/app/style'
-import  {UseAppContext}  from '../../index'
-import Link from 'next/link'
 
+import Link from 'next/link'
+import { RootState } from './state'
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+setIsAvatarMenu,setMenu
+
+} from './slice'
 function ChatNav() {
-  const context = UseAppContext();
-  const { isMenuOpen,setIsMenuOpen, isLogin,avatar,setIsAvatarMenu, isAvatarMenu} = context || {};
+    const dispatch = useDispatch();
+    const isMenu = useSelector((state: RootState) => state.chat.isMenu);
+    const isLogin = useSelector((state:RootState) => state.chat.isLogin);
+    
+    const isAvatarMenu = useSelector((state:RootState) => state.chat.isAvatarMenu);
+    const avatar = useSelector((state:RootState) => state.chat.avatar);
 
   return (
     <div className='w-full h-12 lg:h-14 flex flex-row justify-between items-center p-1 pl-4 pr-4 bg-black/50'>
@@ -19,7 +28,7 @@ function ChatNav() {
       src={'/menu2.svg'}
       alt='loading...'
       className='size-6 cursor-pointer '
-      onClick={()=>{setIsMenuOpen?.(!isMenuOpen)}}
+      onClick={()=>{dispatch(setMenu(!isMenu))}}
        />
 
       </div>
@@ -30,7 +39,7 @@ function ChatNav() {
             <Image
            width={10}
            height={10}
-           src={avatar||'/solid_user.svg'}
+           src={avatar!=='' ? avatar:'/solid_user.svg'}
            alt='loading...'
            className='size-6 rounded-full '
            onClick={()=>{setIsAvatarMenu?.(!isAvatarMenu)}}
@@ -43,7 +52,7 @@ function ChatNav() {
             <Image
            width={10}
            height={10}
-           src={avatar ||''}
+           src={avatar ||'/solid_user.svg'}
            alt='loading...'
            className='size-6 rounded-full '
            />

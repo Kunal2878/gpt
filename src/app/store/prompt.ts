@@ -3,7 +3,7 @@ import React from 'react'
 import crypto from 'crypto'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { DynamoDBClient, PutItemCommand,QueryCommand } from '@aws-sdk/client-dynamodb';
-export default async function Content(prmt:any,rmid:string,isLogin:any,email:any,fun_name:string){
+export default async function Content(prmt:string,rmid:string,isLogin:boolean,email:string,fun_name:string,last_prompt:string){
     const Region= process.env.NEXT_PUBLIC_REGION
     const tab_name = process.env.NEXT_PUBLIC_TABLE
     const room_tab_name = process.env.NEXT_PUBLIC_ROOM_TABLE
@@ -24,13 +24,13 @@ export default async function Content(prmt:any,rmid:string,isLogin:any,email:any
 {
 
   
-   const  run =   async (prmt: any) =>{
+   const  run =   async (prmt: string) =>{
         try {
           const result = await model.generateContent(prmt.toString());
           const response = result.response;
           const text = response.text();
  
-          const id = crypto.randomBytes(16).toString('hex');
+          const id = new Date().toISOString()
           await insertData(text, id);
           return text;
         } catch (error) {
@@ -45,11 +45,11 @@ export default async function Content(prmt:any,rmid:string,isLogin:any,email:any
           TableName: tab_name,
           Item: {
             email:{S:email},
-            rmid: { S: rmid },
-            msid:{S:id},
+            room_id: { S: rmid },
+            msg_id:{S:id},
             prompt: { S: prmt },
             des: { S: txt },
-            time: { S: Date.now().toString() }
+            time: { S: new Date().toISOString() }
           }
         }
   
@@ -77,7 +77,8 @@ else if(fun_name === "insert room")
               TableName: room_tab_name,
               Item: {
                 email:{S:email},
-                rmid: { S: id },
+                room_id: { S: id },
+                last_prompt:{S:last_prompt},
                 time: { S: Date.now().toString() }
               }
             }
@@ -95,7 +96,7 @@ else if(fun_name === "insert room")
 
 
           }
-    const id = crypto.randomBytes(16).toString('hex');
+    const id = new Date().toISOString()
           await insertRoomid(id);
           return id;
 
@@ -115,7 +116,7 @@ else if(fun_name === "insert room")
  
            try {
              const result = await ddbClient.send(new QueryCommand(params));
-             return result.Items?.map(item => item.rmid.S) || [];
+             return result.Items?.map(item => {item.room_id.S,item.last_prompt.S}) || [];
            } catch (error) {
             window.console.log("There is a problem, try after sometime")
              return [];

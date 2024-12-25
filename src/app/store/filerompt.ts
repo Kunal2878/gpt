@@ -3,7 +3,8 @@ import React from 'react'
 import crypto from 'crypto'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
-export  async function FileContent(prmt:string,files:File[])
+// export  async function FileContent(prmt:any,isLogin:any,email:any, files:any,type:any)
+export  async function FileContent(prmt:any,files:any,isLogin:boolean,email:string)
 
 {
     const Region= process.env.NEXT_PUBLIC_REGION
@@ -44,7 +45,7 @@ export  async function FileContent(prmt:string,files:File[])
         return {text:generatedContent.response.text(), status:200}
       } catch (error) {
         window.console.log("There is a problem on generating the response, try after sometime")
-        return {text:error,status:423};
+        // return {text:error,status:423};
       }
     }
 
@@ -56,10 +57,11 @@ export  async function FileContent(prmt:string,files:File[])
     //     TableName: tab_name,
     //     Item: {
     //       email:{S:email},
-    //       id: { S: id },
+    //       room_id: { S: rmid },
+    //       msg_id:{S:id},
     //       prompt: { S: prmt },
     //       des: { S: txt },
-    //       time: { S: Date.now().toString() }
+    //       time: { S: new Date().toISOString() }
     //     }
     //   }
     //   await ddbClient.send(new PutItemCommand(params))

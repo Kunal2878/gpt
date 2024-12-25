@@ -3,18 +3,17 @@
 import { useFormState, useFormStatus } from "react-dom";
 import { redirect } from "next/navigation";
 import * as React from 'react'
+import { RootState } from '../../store/state'
+import { useSelector, useDispatch } from 'react-redux';
 import {
   resendSignUpCode,
   autoSignIn
 } from "aws-amplify/auth";
 
-import  {UseAppContext}  from '../../index'
 
 export default function SendVerificationCode() {
-  const context = UseAppContext();
-  const { email} = context || {};
 
-
+  const email=useSelector((state:RootState) => state.chat.email);
   const [response, dispatch] = useFormState(handleSendEmailVerificationCode, {
     message: "",
     errorMessage: "",

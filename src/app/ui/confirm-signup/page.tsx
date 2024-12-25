@@ -5,17 +5,13 @@ import { useFormState, useFormStatus } from "react-dom";
 import SendVerificationCode from "../../ui/send-code/page";
 import { redirect } from "next/navigation";
 import * as React from 'react'
-import {
-  confirmSignUp,
-
-} from "aws-amplify/auth";
-import  {UseAppContext}  from '../../index'
-
+import {confirmSignUp} from "aws-amplify/auth";
+import { RootState } from '../../store/state'
+import { useSelector, useDispatch } from 'react-redux';
 export default function ConfirmSignUpForm() {
-  const context = UseAppContext();
-  const { email} = context || {};
-  const [errorMessage, dispatch] = useFormState(handleConfirmSignUp as any, undefined);
 
+  const [errorMessage, dispatch] = useFormState(handleConfirmSignUp as any, undefined);
+  const email=useSelector((state:RootState) => state.chat.email);
   async function handleConfirmSignUp(
     prevState: string | undefined,
     formData: FormData

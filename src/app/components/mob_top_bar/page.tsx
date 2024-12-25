@@ -5,12 +5,12 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation';
 import {sty1,sty2} from '@/app/style'
 import {fetchUserAttributes,getCurrentUser,signOut } from "aws-amplify/auth";
-import  {UseAppContext}  from '../../index'
+import { RootState } from '../../store/state'
+import { useSelector, useDispatch } from 'react-redux';
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
-  const context = UseAppContext();
-  const {isLogin, setIsLogin, setUserName} = context || {};
+  const isLogin = useSelector((state:RootState) => state.chat.isLogin);
   // Toggle menu open/closed
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -21,8 +21,7 @@ const Menu = () => {
       await signOut();
       redirect('/')
     } catch (error) {
-      console.log(error)
-      // console.log(getErrorMessage(error));
+   
     }
 
   }

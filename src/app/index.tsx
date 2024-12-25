@@ -1,7 +1,8 @@
 "use client"
 import { useState, createContext, useContext } from "react"
 import { ThemeProvider } from "next-themes"
-
+import {store} from './store/state'
+import { Provider } from 'react-redux';
 // const AppContext = createContext<AppContextProps|null>(null);
 import { Amplify, type ResourcesConfig } from 'aws-amplify';
 import { useEffect } from 'react';
@@ -50,13 +51,14 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [chatTheme, setChatTheme] = useState<string>('/Design.png');
   const [currRid,setCurrRid]=useState<string | undefined>('')
   const [currIndex,setCurrIndex]=useState<number>(0)
+  const [quickPrompt,setQuickPrompt]=useState<string>('')
 
 
 
   
 
   return (
-    <ThemeProvider attribute="class">
+    <Provider store={store}>
       <AppContext.Provider
         value={{
           userName,
@@ -81,6 +83,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           chatRoomData,
           currRid,
           currIndex,
+          quickPrompt,
 
           setId,
           setEmail,
@@ -103,7 +106,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
           setNewContent,
           setChatRoomData,
           setCurrRid,
-          setCurrIndex
+          setCurrIndex,
+          setQuickPrompt
 
         }}
       >
@@ -112,7 +116,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
       </AppContext.Provider>
      
 
-    </ThemeProvider>
+    </Provider>
   );
 
 }

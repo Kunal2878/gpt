@@ -44,7 +44,7 @@ function Landingpage() {
       <p className='w-full md:w-1/2 flex flex-row justify-center items-center text-[14px] md:text-[15px] p-4 mt-8 text-transparent bg-clip-text bg-gradient-to-t from-gray-600   to-white'>Welcome to a realm where innovation meets intelligence—our cutting-edge GPT technology is designed to transform your ideas into reality, offering you unprecedented insights and solutions. Dive into a world where every conversation sparks inspiration and every query leads to a breakthrough</p>
     
     <div className={`${sty1} absolute w-full mt-8 md:mt-12 text-gray-900 p-4 bottom-0 mb-8 md:mb-0`}>
-    <Link href="components/user-chat" className={` ${sty1} hover:scale-125 md:w-40 w-32 h-10 rounded-full text-[14px] md:text-[16px] bg-white font-semibold transition-all delay-200`}>Try now
+    <Link href="store/user-chat" className={` ${sty1} hover:scale-125 md:w-40 w-32 h-10 rounded-full text-[14px] md:text-[16px] bg-white font-semibold transition-all delay-200`}>Try now
     <Image
     src={'/top-right-arrow.svg'}
     width={10}

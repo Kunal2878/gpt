@@ -29,17 +29,19 @@ const ddbClient= new DynamoDBClient(config)
   const matchRoom = (index: number, id: string) => {
     setCurrRid?.(id)
     if (chatRoomData) {
- console.log(chatRoomData[index])
+ console.log("chatRoomData-index from list",chatRoomData[index])
   setContent?.(chatRoomData[index])
+  // setContent?.(chatRoomData)
     }
-    if (setChatRoomData && currIndex !== undefined && chatRoomData) {
-      console.log("content from userlist",content, "currIndex",currIndex)
-      setChatRoomData?.((prevData: any[]) => {
-        const newData = [...prevData]
-        newData[currIndex] = newContent
-        return newData
-      })
-    }
+    // if (setChatRoomData && currIndex !== undefined && chatRoomData) {
+    //   console.log("content from userlist",content, "currIndex",currIndex)
+    //   setChatRoomData?.((prevData: any[]) => {
+    //     const newData = [...prevData]
+    //     newData[currIndex] = newContent
+    //     return newData
+    //   })
+    
+    // }
     setCurrIndex?.(index)
     // setContent?.([])
   }

@@ -121,11 +121,7 @@ const [errorMessage, dispatch] = useFormState(handleSignIn as any, undefined);
                   Sign Up.
                 </Link>
               </p>
-              {/* <div className="flex justify-center mt-6">
-                <button className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
-                  Sign In with Google
-                </button>
-              </div> */}
+         
             </form>
           </div>
         </div>
