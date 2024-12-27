@@ -6,7 +6,7 @@ import Image from 'next/image'
 import  {UseAppContext}  from '../../index'
 import {FileContent} from '../../components/userFilePrompt/filerompt'
 function FileUpload ()  {
-    // const [files, setFiles] = React.useState<File[]>([]);
+
     const [isUploadDisabled, setIsUploadDisabled] = React.useState(false);
     const [color, setColor] = React.useState<string>('');
     const context = UseAppContext();
