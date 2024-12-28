@@ -6,7 +6,7 @@ import UserContent from '../usercontent2'
 import ChatNav from '../chatNav'
 import Avatar from '../avatar'
 import { UseAppContext } from '../../index'
-// import Content from '../../../app/components/userprompt/prompt'
+
 import {fetchUserAttributes,getCurrentUser,signOut } from "aws-amplify/auth";
 function UserContentTemp({isCookieData}:{isCookieData:boolean}) {
   const [isLoading, setIsLoading]= React.useState(true)
