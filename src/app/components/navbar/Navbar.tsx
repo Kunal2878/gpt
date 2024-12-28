@@ -1,6 +1,6 @@
 'use client'
 import * as  React from 'react'
-import {sty1} from '@/app/style'
+import {sty1,sty2} from '@/app/style'
 
 import { redirect } from 'next/navigation';
 import Image from 'next/image'
