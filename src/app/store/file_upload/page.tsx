@@ -4,7 +4,7 @@ import * as  React from 'react';
 import {sty1,sty2} from '../../style'
 import Image from 'next/image'
 import  {UseAppContext}  from '../../index'
-import {FileContent} from '../../components/userFilePrompt/filerompt'
+import {FileContent} from '../filerompt'
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../state'
 
@@ -130,8 +130,8 @@ function FileUpload ()  {
         let prmt="summarise this file";
         if(files.length>0){
 
-         const  getFileResponse=   await FileContent(prmt, files)
-         if(getFileResponse.status===200)
+         const  getFileResponse=   await FileContent(prmt, files,false,'')
+         if(getFileResponse?.status===200)
          {
 
          }
