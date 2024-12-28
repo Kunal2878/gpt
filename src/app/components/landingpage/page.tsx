@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import {sty1,sty2} from '@/app/style'
+import {sty1} from '@/app/style'
 import  {UseAppContext}  from '../../index'
 function Landingpage() {
   const context = UseAppContext();

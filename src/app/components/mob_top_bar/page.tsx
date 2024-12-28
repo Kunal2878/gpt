@@ -3,10 +3,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation';
-import {sty1,sty2} from '@/app/style'
-import {fetchUserAttributes,getCurrentUser,signOut } from "aws-amplify/auth";
+import {sty1} from '@/app/style'
+import {signOut } from "aws-amplify/auth";
 import { RootState } from '../../store/state'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
@@ -89,14 +89,14 @@ const Menu = () => {
                 About
               </Link>
             </li>
-            <li>
+            {/* <li>
             <Link 
                 href="/" 
                 className="block py-2 px-3 hover:bg-gray-100 rounded-md transition"
               >
                 Services
               </Link>
-            </li>
+            </li> */}
             <li>
             <div className=" md:hidden rounded-full w-24 h-10 mb-4  p-1 bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-600"> 
   { isLogin ?(

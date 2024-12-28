@@ -63,7 +63,7 @@ const timer = setTimeout(() => {
             {/* h-[calc(100vh-48px)] lg:h-[calc(100vh-56px)] */}
             <UserContentList/>
             <div className='fixed z-10 w-full h-[calc(100vh-30px)] lg:h-[calc(100vh-36px)]  flex flex-row justify-center pt-6'>
-              <UserContent />
+            <UserContent />
             </div>
           </div>
         </>
