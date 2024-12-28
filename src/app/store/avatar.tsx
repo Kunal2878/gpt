@@ -11,7 +11,6 @@ setIsAvatarMenu,setMenu,setUsername,setAvatar
 
 } from './slice'
 const Avatar = () => {
-  const [image, setImage] = useState<string | undefined>();
   const dispatch = useDispatch();
     const isMenu = useSelector((state: RootState) => state.chat.isMenu);
     const isLogin = useSelector((state:RootState) => state.chat.isLogin);

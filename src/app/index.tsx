@@ -1,11 +1,9 @@
 "use client"
 import { useState, createContext, useContext } from "react"
-import { ThemeProvider } from "next-themes"
 import {store} from './store/state'
 import { Provider } from 'react-redux';
-// const AppContext = createContext<AppContextProps|null>(null);
 import { Amplify, type ResourcesConfig } from 'aws-amplify';
-import { useEffect } from 'react';
+
 import {AppContextProps} from './types/basic_types'
 const AppContext = createContext<AppContextProps|null>(null);
 
@@ -23,10 +21,7 @@ Amplify.configure(
   },
   { ssr: true }
 );
-type c_msg ={
-  prmt: string;
-  content: any;
-}
+
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [id, setId] = useState<any|undefined>("");
   const [email, setEmail] = useState<string|undefined>("");
