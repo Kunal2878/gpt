@@ -44,7 +44,7 @@ export  async function FileContent(prmt:any,files:any,isLogin:boolean,email:stri
         
         return {text:generatedContent.response.text(), status:200}
       } catch (error) {
-        window.console.log("There is a problem on generating the response, try after sometime")
+        console.log("There is a problem on generating the response, try after sometime")
         // return {text:error,status:423};
       }
     }

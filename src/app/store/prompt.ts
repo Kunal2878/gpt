@@ -34,7 +34,7 @@ export default async function Content(prmt:string,rmid:string,isLogin:boolean,em
           await insertData(text, id);
           return text;
         } catch (error) {
-          window.console.log("There is a problem, try after sometime")
+          console.log("There is a problem, try after sometime")
 
         }
       }
@@ -57,7 +57,7 @@ export default async function Content(prmt:string,rmid:string,isLogin:boolean,em
            await ddbClient.send(new PutItemCommand(params))
     
         } catch (error) {
-          window.console.log("There is a problem on saving your data, try after sometime")
+          console.log("There is a problem on saving your data, try after sometime")
 
         }
       }
@@ -90,7 +90,7 @@ else if(fun_name === "insert room")
               
             }
           catch (error) {
-            window.console.log("There is a problem, try after sometime")
+            console.log("There is a problem, try after sometime")
             }
 
 
@@ -118,7 +118,7 @@ else if(fun_name === "insert room")
              const result = await ddbClient.send(new QueryCommand(params));
              return result.Items?.map(item => {item.room_id.S,item.last_prompt.S}) || [];
            } catch (error) {
-            window.console.log("There is a problem, try after sometime")
+            console.log("There is a problem, try after sometime")
              return [];
            }
          };

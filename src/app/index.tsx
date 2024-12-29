@@ -2,11 +2,9 @@
 import { useState, createContext, useContext } from "react"
 import {store} from './store/state'
 import { Provider } from 'react-redux';
-import { Amplify, type ResourcesConfig } from 'aws-amplify';
 
 import {AppContextProps} from './types/basic_types'
-const AppContext = createContext<AppContextProps|null>(null);
-
+import { Amplify, type ResourcesConfig } from 'aws-amplify';
 export const authConfig: ResourcesConfig["Auth"] = {
   Cognito: {
     userPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID ?? '',
@@ -21,6 +19,8 @@ Amplify.configure(
   },
   { ssr: true }
 );
+const AppContext = createContext<AppContextProps|null>(null);
+
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [id, setId] = useState<any|undefined>("");

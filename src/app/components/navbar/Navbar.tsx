@@ -26,7 +26,7 @@ React.useEffect (()=>{
         await signOut();
         redirect('/')
       } catch (error) {
-        window.console.log('Error getting current user:');
+        console.log('Error getting current user:');
       }
   
     }
@@ -41,11 +41,11 @@ React.useEffect (()=>{
           }
           return user;
         } else {
-          window.console.log('User is not signed in');
+          console.log('User is not signed in');
           return null;
         }
       } catch (error) {
-        window.console.log('Error getting current user:', error);
+        console.log('Error getting current user:', error);
         return null;
       }
     };
