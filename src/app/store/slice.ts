@@ -28,7 +28,8 @@ export interface ChatState{
   userName:string,
   email:string,
   files:File[],
-  showError:string
+  showError:string,
+  isShowPage:boolean
 
 }
 const initialState:ChatState ={
@@ -44,7 +45,8 @@ const initialState:ChatState ={
   userName:'',
   email:'',
   files:[],
-  showError:''
+  showError:'',
+  isShowPage:true
 
 }
 // Create the Redux store
@@ -107,6 +109,10 @@ const roomSlice = createSlice({
     setShowError: (state, action: PayloadAction<string>) => {
       state.showError = action.payload;
     },
+    setIsShowPage: (state, action: PayloadAction<boolean>) => {
+      state.isShowPage = action.payload;
+    },
+    
   }
 })    
     // export const messageSlice= createSlice({
@@ -170,7 +176,8 @@ export const {
   setEmail,
   setFiles,
   setRemoveFile,
-  setShowError
+  setShowError,
+  setIsShowPage
   // removeRoom, 
   // removeRoomMessages
 

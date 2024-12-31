@@ -59,10 +59,10 @@ const timer = setTimeout(() => {
           <div className=' absolute top-0 z-40 w-full'>
             <ChatNav />
           </div>
-          <div className='w-full  h-screen mt-7 flex flex-row '>
+          <div className='w-full z-50 h-screen mt-7 flex flex-row '>
             {/* h-[calc(100vh-48px)] lg:h-[calc(100vh-56px)] */}
             <UserContentList/>
-            <div className='fixed z-10 w-full h-[calc(100vh-30px)] lg:h-[calc(100vh-36px)]  flex flex-row justify-center pt-6'>
+            <div className='fixed -z-10 w-full h-[calc(100vh-30px)] lg:h-[calc(100vh-36px)]  flex flex-row justify-center pt-6'>
             <UserContent />
             </div>
           </div>

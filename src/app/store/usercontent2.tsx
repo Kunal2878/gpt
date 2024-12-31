@@ -12,10 +12,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { 
   addRoom, 
   addMessage, 
-  setActiveRoom,
   setActivPrompt,
+  setActiveRoom,
   updateLastPrompt, 
-  setShowError
+  setShowError,
+  setIsShowPage
 } from './slice'
 
 
@@ -31,16 +32,15 @@ const isLogin = useSelector((state:RootState) => state.chat.isLogin);
 const email=useSelector((state:RootState) => state.chat.email);
 const avatar=useSelector((state:RootState) => state.chat.avatar);
 const files = useSelector((state: RootState) => state.chat.files);
+const isShowPage = useSelector((state: RootState) => state.chat.isShowPage);
 
-  var result: any
+var result: any
 
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [isShowPage, setIsShowPage] = React.useState<boolean>(true)
   const [isFileUpload, setIsFileUpload] = React.useState<boolean>(false)
   const [filePrompt, setfilePrompt] = React.useState<string>("")
   const [partialPrompt, setPartialPrompt] = React.useState<string>("")
-
   const blueContainerRef = React.useRef<HTMLDivElement>(null)
   const fileMenuRef = React.useRef(null);
   const scrollToBottom = () => {
@@ -56,9 +56,9 @@ const files = useSelector((state: RootState) => state.chat.files);
 
 
 
-const checkPrompt = async ()=>
+const checkPrompt = async ()=>{
 
-{
+
 
 if(isFileUpload && files.length>0 || !isFileUpload && files.length==0)
 {
@@ -69,15 +69,32 @@ if(isFileUpload && files.length>0 || !isFileUpload && files.length==0)
 }
 
 
-const runPrompt = async () => {
 
-// getting response for the prompt
+
+React.useEffect(() => {
+  const handleKeyDown = (event: KeyboardEvent) => {
+    console.log(prompt)
+    if (event.key === 'Enter' && !event.shiftKey && (prompt!=='' && isFileUpload && files.length>0 || prompt!=='' && !isFileUpload && files.length==0)) {
+      setPartialPrompt(prompt)
+      runPrompt()
+    }
+  };
+
+  document.addEventListener('keydown', handleKeyDown);
+
+  // return () => {
+  //   document.removeEventListener('keydown', handleKeyDown);
+  // };
+}, []);
+
+
+const runPrompt = async () => {
 
 if(isFileUpload)
   {
   setIsFileUpload(!isFileUpload)
   scrollToBottom();
-  setIsShowPage(false)
+  dispatch(setIsShowPage(false))
   setIsLoading(true);
 const  getFileResponse =   await FileContent(prompt, files,isLogin,email,)
    if(getFileResponse?.status===200)
@@ -107,16 +124,13 @@ const  getFileResponse =   await FileContent(prompt, files,isLogin,email,)
       dispatch(setShowError("Error on getting the response, please try after some time"))
   
          }
-    
-
-
 }
 
 else if(!isFileUpload)
 
 {
   scrollToBottom();
-  setIsShowPage(false)
+  dispatch(setIsShowPage(false))
   setIsLoading(true);
 
   result = await Content(prompt,activeRoomId, isLogin, email,"gen_data",'');
@@ -141,7 +155,7 @@ else if(!isFileUpload)
  
 }
 setIsLoading(false);
-setIsShowPage(true)
+dispatch(setIsShowPage(true))
 setPartialPrompt('')
   
       
@@ -156,41 +170,24 @@ setPartialPrompt('')
         dispatch(addRoom({ room_id, last_prompt: 'New-chat' }));
       }
     } else {
-      dispatch(addRoom({ room_id: new Date().toISOString(), last_prompt: 'New-chat' }));
+      const room_id=new Date().toISOString()
+      dispatch(addRoom({ room_id, last_prompt: 'New-chat' }));
+      dispatch(setActiveRoom(room_id))
     }
 
-    setIsShowPage(true);
+    dispatch(setIsShowPage(true))
 };
-React.useEffect(()=>{
 
-console.log("From- user ",rooms, "chatRoomData", activeRoomId, "id")
-console.log("prompt",prompt)
 
-})
 
-// React.useEffect(() => {
-//     const handleClickOutside = (event: MouseEvent) => {
-//       if (fileMenuRef.current && !(fileMenuRef.current as Node).contains(event.target as Node)) {
-//         setIsFileUpload(false);
-//       }
-//     };
-
-//     // Add event listener when menu is open
-//     if (isFileUpload) {
-//       document.addEventListener('mousedown', handleClickOutside);
-//     }
-
-//     // Cleanup the event listener
-//     return () => {
-//       document.removeEventListener('mousedown', handleClickOutside);
-//     };
-//   }, [isFileUpload]);
 
   return (
    
    <div className={`w-full h-full ${sty2} `}>
       <div className={`w-full static h-[calc(100vh-80px)]  flex flex-col justify-center p-4`}>
-       {messages.length == 0 && isShowPage === true ? (
+       {
+       (messages.length == 0 && isShowPage === true) || (!messages.some(message => message.room_id === activeRoomId) && isShowPage === true ) ?
+       (
         <div className={`w-full h-full flex flex-col justify-center items-center`}>
           <ChatLandingPage/>
         </div>
@@ -208,7 +205,7 @@ console.log("prompt",prompt)
                   <div className={`w-4/5 lg:w-3/5 ${sty2} mt-4`} key={index}>
 
               <div className={`w-full flex flex-row justify-start text-white text-sm font-semibold`}>
-              <div className= { `rounded size-6 ${sty1} mr-2  border-x-violet-700 p-1 drop-shadow-lg shadow-slate-300`}>
+              <div className= { `rounded size-6 ${sty1} mr-2 border-2 rounded-full border-x-violet-700 p-1 drop-shadow-lg shadow-slate-300`}>
                 <Image
                 width={24}
                 height={24}
@@ -219,17 +216,22 @@ console.log("prompt",prompt)
                 /></div>
                 {itr.prmt}
               </div>
-              <div className={`${sty1} w-full min-h-20 rounded-md bg-gray-600 text-white text-sm mt-4 p-4`}>
-                
-              <div className= { `size-6 ${sty1} mr-2 border-x-violet-700 p-1 drop-shadow-lg shadow-slate-300`}>
+              <div className='w-full flex flex-row justify-start mt-2'>
+
+              <div className= { `size-6 ${sty1} mr-2 mt-4 rounded-full  border-x-cyan-400 p-1 drop-shadow-lg shadow-slate-300`}>
                 <Image
                 width={10}
                 height={10}
                 src="/logo.svg"
                 alt='....'
-                className='size-4'
-                /></div>{itr.des}
+                className='size-4 rounded'
+                /></div>
+              <div className={`${sty1} w-full min-h-20 rounded-md bg-gray-600 text-white text-sm mt-4 p-4`}>
+                
+                <span>  {itr.des}   </span>
+              
               </div>
+                </div>
               </div>
            )
               
@@ -273,14 +275,16 @@ console.log("prompt",prompt)
 
           
         </div>
-       )}
+       )
+      }
+
       </div>
 
 
 {
 <div 
 ref={fileMenuRef}
-className={` fixed w-1/2 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg 
+className={` fixed w-full p-6 lg:w-1/2  bg-gradient-to-r from-black  to-indigo-700 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg 
  transition-all duration-300 ease-in-out
    ${isFileUpload && !isLoading 
             ? 'opacity-100 scale-100 translate-y-0' 
@@ -289,12 +293,7 @@ className={` fixed w-1/2 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg
  `}
  
  >
-  {/* isFileUpload && !isLoading && (
 
-
-
-
-)   */}
 <FileUpload/>
 </div>
 
@@ -309,7 +308,7 @@ className={` fixed w-1/2 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg
               height={24}
               alt='....'
               className='size-6 flex flex-row justify-center items-center'
-              onClick={() => {setIsFileUpload?.(!isFileUpload); setIsShowPage(!isShowPage); }}
+              onClick={() => {setIsFileUpload?.(!isFileUpload); dispatch(setIsShowPage(!isShowPage)); }}
 
             />
           </div>
@@ -318,7 +317,7 @@ className={` fixed w-1/2 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg
               type='text' 
               className={`w-11/12 bg-white flex flex-row justify-center items-center text-black outline-none`} 
               placeholder="Write your prompt here"  
-              onChange={(e) => {dispatch(setActivPrompt(e.target.value));setActivPrompt(e.target.value)}}
+              onChange={(e) => {dispatch(setActivPrompt(e.target.value));setPartialPrompt(e.target.value)}}
               value={prompt} 
               disabled={isLoading} 
             />
@@ -340,9 +339,6 @@ className={` fixed w-1/2 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg
             >
               <Image
                 src={'/plus_icon.svg'}
-
-
-
                 width={24}
                 height={24}
                 alt='plus icon'
@@ -356,11 +352,5 @@ className={` fixed w-1/2 z-100 ${sty2} absolute top-1/4 shadow-lg rounded-lg
     </div>
 
 
-  )  
-
-
-
-
-
-}
+  ) }
 export default UserContent

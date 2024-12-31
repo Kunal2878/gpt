@@ -24,20 +24,13 @@ function UserContentList() {
 };
 const ddbClient= new DynamoDBClient(config)
 
-  const context = UseAppContext();
-  // const { email,isMenuOpen,chatRooms,setContent,content,chatRoomData,isLogin,setChatRooms,setCurrRid,currIndex,setChatRoomData,setCurrIndex,currRid,setNewContent,newContent } = context || {};
- 
+
   const dispatch = useDispatch();
   const rooms  = useSelector((state: RootState) => state.chat.rooms);
   const activeRoomId = useSelector((state:RootState) => state.chat.activeRoomId);
   const isLogin = useSelector((state:RootState) => state.chat.isLogin);
   const email = useSelector((state:RootState) => state.chat.email);
   const isMenu = useSelector((state: RootState) => state.chat.isMenu);
-
-
-
-   
-  const [inSize, setInsize] = React.useState<number>(44)
 
   const matchRoom = (index: number, id: string) => {
 dispatch(setActiveRoom(id))
@@ -49,19 +42,21 @@ dispatch(setActiveRoom(id))
 React.useEffect(() => {
   async function setRoomid() {
     if (rooms.length === 0) {
+      const room_id = new Date().toISOString()
       if (isLogin) {
-        dispatch(addRoom({ room_id: 'New-chat', last_prompt: 'New chat' }))
+        dispatch(addRoom({ room_id, last_prompt: 'New chat' }))
+        dispatch(setActiveRoom(room_id))
       } 
       else {
-        console.log("putting in room")
-        dispatch(addRoom({ room_id: 'New-chat', last_prompt: 'New chat' }))
+        dispatch(addRoom({ room_id, last_prompt: 'New chat' }))
+        dispatch(setActiveRoom(room_id))
       }
     }
   }
 
   async function getRoomId() {
     if (!email) {
-      console.log("Email is undefined");
+
       return [];
     }
 
@@ -89,14 +84,14 @@ React.useEffect(() => {
       }
       return res;
     } catch (error) {
-      console.log("Error retrieving room IDs:", error);
+
       return [];
     }
   }
 
   async function getChatData() {
     if (!email) {
-      console.log("Email is undefined");
+
       return [];
     }
 
@@ -124,7 +119,7 @@ React.useEffect(() => {
       }
       return res;
     } catch (error) {
-      console.log("Error retrieving chat data:", error);
+      // console.log("Error retrieving chat data:", error);
       return [];
     }
   }
@@ -149,14 +144,14 @@ React.useEffect(() => {
 
     return (
 
-      <aside className={ `transition-all duration-300 ease-in-out  p-[2px] mt-8 z-100 flex flex-col  w-52 lg:w-48 h-full  bg-black/20 pt-4 text-white  overflow-hidden hover:overflow-y-auto ${isMenu? 'opacity-100 scale-100 translate-y-0' 
+      <aside className={ `transition-all duration-300 ease-in-out  p-[2px] mt-8 z-100 flex flex-col  w-52 lg:w-48 h-full  bg-black/90 pt-4 text-white  overflow-hidden hover:overflow-y-auto ${isMenu? 'opacity-100 scale-100 translate-y-0' 
         : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'}`}> 
       {
 
 
 rooms.map((itr:any,index:any) => (
-<div key = {index} className="w-11/12 p-2 rounded-md bg-gray-600 hover:bg-gray-500 text-white  mb-4 line-clamp-1" onClick={() => matchRoom(index,itr.room_id)}>
-{itr.last_prompt}
+<div key={index} className="w-11/12 p-2 rounded-md bg-gray-600 hover:bg-gray-500 text-white mb-4 truncate ml-1 cursor-pointer" onClick={() => matchRoom(index, itr.room_id)}>
+  {itr.last_prompt}
 </div>
 ))}
 
