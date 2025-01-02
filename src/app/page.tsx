@@ -7,8 +7,6 @@ import AllComponents from './components/allComponents';
 import { cookies } from 'next/headers'
 import ChatMessageFormatter from './resoponseFormatter'
 export default function Home() {
-
-
   const cookieStore = cookies()
   const cookieData = cookieStore.get("CognitoIdentityServiceProvider.58naai034kd5bn6itu7cip557h.LastAuthUser")
   return (
