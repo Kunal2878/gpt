@@ -15,15 +15,7 @@ return (
 <AllComponents cookieData={cookieData}/>
 
 
-{/* <div className="w-full flex min-h-screen flex-col   top-0 "> 
 
- <Navbar/>
-<Landingpage/> 
-
-</div>
-
-      <Body_com/>
-      <Footer/> */}
 
 
 </main>
