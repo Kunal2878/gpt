@@ -3,7 +3,7 @@ import * as React from 'react'
 import {sty1,sty2} from '../../app/style'
 import Image from 'next/image'
 import Content from './prompt'
-
+import ChatMessageFormatter from '../resoponseFormatter'
 import ChatLandingPage from './chatlandingpage/page'
 import FileUpload from './file_upload/page'
 import {FileContent} from './filerompt'
@@ -226,10 +226,11 @@ setPartialPrompt('')
                 alt='....'
                 className='size-4 rounded'
                 /></div>
-              <div className={`${sty1} w-full min-h-20 rounded-md bg-gray-600 text-white text-sm mt-4 p-4`}>
+              <div className={`${sty2} w-full min-h-20 rounded-md bg-slate-900 text-white text-sm mt-4 p-4`}>
                 
                 <span>  {itr.des}   </span>
-              
+              <ChatMessageFormatter message={itr.des}/>
+            
               </div>
                 </div>
               </div>
