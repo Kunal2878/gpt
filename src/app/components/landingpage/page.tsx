@@ -1,13 +1,23 @@
 "use client"
-import React from 'react'
+import * as React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {sty1} from '@/app/style'
-import  {UseAppContext}  from '../../index'
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/state'
+
 function Landingpage() {
-  const context = UseAppContext();
-  const { isLogin, userName} = context || {};
+
+  const isLogin = useSelector((state:RootState) => state.chat.isLogin);
+  const userName = useSelector((state:RootState) => state.chat.userName);
+
+
+
   return (
+
+
+
+
     <div className=' w-full  text-gray-900 dark:text-white flex flex-col justify-center items-center mt-20'
     >
       <div className='hidden w-full md:flex flex-row justify-center items-center text-4xl md:text-6xl p-2 text-transparent bg-clip-text bg-gradient-to-tl from-pink-600 via-indigo-600 to-pink-400 '>
@@ -57,7 +67,8 @@ function Landingpage() {
     </Link>
     <Link href="/" className={`${sty1} w-44 p-1 md:w-60 h-10 rounded-full md:text-[16px] text-[12px] text-white font-semibold`}>Learn about TalkToGPT &gt; </Link>
     </div>
-    </div>
+
+</div>
 
   )
 }

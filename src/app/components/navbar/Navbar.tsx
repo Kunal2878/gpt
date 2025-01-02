@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsLogin,setUsername } from '../../store/slice'
 import Menu from '../mob_top_bar/page'
 function Nav ({isCookie}:{isCookie:boolean}){
+  
     const dispatch = useDispatch();
     const isLogin=useSelector((state:RootState) => state.chat.isLogin);
    

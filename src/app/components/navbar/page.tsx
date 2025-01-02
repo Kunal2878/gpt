@@ -1,13 +1,11 @@
+'use client'
 
 import Nav from "./Navbar"
 import { cookies } from 'next/headers'
-const Navbar = () => {
+const Navbar = (cookieData:any) => {
 
-  let isCookie: boolean = false
-  const cookieStore = cookies()
-  const cookieData = cookieStore.get("CognitoIdentityServiceProvider.58naai034kd5bn6itu7cip557h.LastAuthUser")
- 
-if(cookieData){
+let isCookie: boolean = false
+if(cookieData.cookieData!==undefined){
   isCookie = true
 }
 

@@ -1,9 +1,6 @@
 'use client'
 import * as React from 'react'
 import {sty1,sty2} from '../../app/style'
-import Image from 'next/image'
-import crypto from 'crypto'
-import  {UseAppContext}  from '../../app/index'
 import { DynamoDBClient, PutItemCommand,QueryCommand } from '@aws-sdk/client-dynamodb';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './state'
