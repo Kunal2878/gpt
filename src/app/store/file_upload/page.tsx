@@ -3,7 +3,6 @@
 import * as  React from 'react';
 import {sty1,sty2} from '../../style'
 import Image from 'next/image'
-import  {UseAppContext}  from '../../index'
 import {FileContent} from '../filerompt'
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../state'
@@ -11,7 +10,7 @@ import { RootState } from '../state'
 import { 
 setFiles,setRemoveFile, setShowError
 } from '../slice'
-import { remove } from 'aws-amplify/storage/server';
+
 function FileUpload ()  {
 
     const dispatch = useDispatch();
