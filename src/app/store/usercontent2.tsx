@@ -227,8 +227,6 @@ setPartialPrompt('')
                 className='size-4 rounded'
                 /></div>
               <div className={`${sty2} w-full min-h-20 rounded-md bg-slate-900 text-white text-sm mt-4 p-4`}>
-                
-                <span>  {itr.des}   </span>
               <ChatMessageFormatter message={itr.des}/>
             
               </div>
